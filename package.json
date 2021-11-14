@@ -16,5 +16,13 @@
   },
   "author": "",
   "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tarekyou/team-portfolio.git"
+  },
+  "bugs": {
+    "url": "https://github.com/tarekyou/team-portfolio/issues"
+  },
+  "homepage": "https://github.com/tarekyou/team-portfolio#readme",
   "description": ""
 }
