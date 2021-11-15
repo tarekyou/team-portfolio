@@ -17,7 +17,7 @@ test('get employee ID', () => {
     const name = 'anyname'
     const id = 1
     const employ = new Employee(name, id)
-    expect(employ.id).toBe(id)
+    expect(employ.id).toEqual(expect.any(Number))
 })
 
 test ('get employee email', ()=> {
