@@ -1,5 +1,4 @@
-const Manager = require("../lib/Manager");
-const Employee = require("../lib/Employee");
+const Manager = require("../lib/Manager")
 
 test('Office number', () => {
     const name = 'anyname'
