@@ -129,8 +129,35 @@ const teamInfo = (individual) => {
 
     })
 }
+
+
+
+const writeFile = fileContent =>{
+    return new Promise((resolve, reject)=>{
+        fs.writeFile('./dist/index.html', fileContent, err =>{
+            if(err){
+                reject(err)
+                return;
+            }
+            resolve({
+                ok: true,
+                message: 'File created!'
+            })
+        })
+    });
+};
+
+
+
+
 managerInfo()
 .then(teamInfo)
+.then(()=> generatePage(teamForce))
+
+.then(pageHTML => {
+    console.log(pageHTML)
+    return writeFile(pageHTML);
+  })
 .catch(err => {
     console.log(err);
   });

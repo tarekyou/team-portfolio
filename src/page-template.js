@@ -2,69 +2,69 @@ const Employee = require("../lib/Employee")
 const Engineer = require("../lib/Engineer")
 const Manager = require("../lib/Manager")
 const Intern = require("../lib/Intern")
+let displayPeople = ''
 
-
-const engineerHTML = (engineerMember) => {
-    if (!engineerMember) {
-      return '';
-    }
+const engineerHTML = (person) => {
+    // if (!engineerMember) {
+    //   return '';
+    // }
   
     return `
 
     <div class="card">
       <div class="card-header bg-primary">
-          <h2 class="card-title">${Employee.name }</h2>
-          <h3 class="card-title">${Engineer.getRole()}</h3>
+          <h2 class="card-title">${person.name }</h2>
+          <h3 class="card-title">${person.getRole()}</h3>
       </div>
       <div class="card-body">
           <ul class="list-group">
-              <li class="list-group-item">ID: ${Employee.id}</li>
-              <li class="list-group-item">Email: <a href="mailto:${Employee.email}">${Employee.email}</a></li>
-              <li class="list-group-item">GitHub: <a href="https://github.com/${Engineer.github}" target="_blank" rel="noopener noreferrer">github</a></li>
+              <li class="list-group-item">ID: ${person.id}</li>
+              <li class="list-group-item">Email: <a href="mailto:${person.email}">${person.email}</a></li>
+              <li class="list-group-item">GitHub: <a href="https://github.com/${person.github}" target="_blank" rel="noopener noreferrer">github</a></li>
           </ul>
       </div>
     </div>
       
     `;
 };
-const internHTML = (internMember) => {
-    if (!internMember) {
-      return '';
-    }
+const internHTML = (person) => {
+    // if (!internMember) {
+    //   return '';
+    // }
   
     return `
 
     <div class="card employee-card">
       <div class="card-header bg-primary">
-          <h2 class="card-title">${Employee.name }</h2>
-          <h3 class="card-title">${Intern.getRole()}</h3>
+          <h2 class="card-title">${person.name }</h2>
+          <h3 class="card-title">${person.getRole()}</h3>
       </div>
       <div class="card-body">
           <ul class="list-group">
-              <li class="list-group-item">ID: ${Employee.id}</li>
-              <li class="list-group-item">Email: <a href="mailto:${Employee.email}">${Employee.email}</a></li>
-              <li class="list-group-item">School: ${Intern.school}</li>
+              <li class="list-group-item">ID: ${person.id}</li>
+              <li class="list-group-item">Email: <a href="mailto:${person.email}">${person.email}</a></li>
+              <li class="list-group-item">School: ${person.school}</li>
           </ul>
       </div>
     </div>
       
     `;
 };
-const managerHTML = () => {
+const managerHTML = (person) => {
 
   
     return `
 
     <div class="card employee-card">
       <div class="card-header bg-primary">
-          <h2 class="card-title">${Employee.name }</h2>
-          <h3 class="card-title">${Manager.getRole()}</h3>
+          <h2 class="card-title">${person.name }</h2>
+          <h3 class="card-title">${person.getRole()}</h3>
       </div>
       <div class="card-body">
           <ul class="list-group">
-              <li class="list-group-item">ID: ${Employee.id}</li>
-              <li class="list-group-item">Email: <a href="mailto:${Employee.email}">${Employee.email}</a></li>
-              <li class="list-group-item">Office: ${Manager.office}</li>
+              <li class="list-group-item">ID: ${person.id}</li>
+              <li class="list-group-item">Email: <a href="mailto:${person.email}">${person.email}</a></li>
+              <li class="list-group-item">Office: ${person.office}</li>
           </ul>
       </div>
     </div>
@@ -73,7 +73,7 @@ const managerHTML = () => {
 };
 
 
-const generateHTML= () =>{
+const generateHTML= (teamForce) =>{
     
 
     return `
@@ -98,9 +98,24 @@ const generateHTML= () =>{
       </div>
     </header>
     <main class="container my-5">
-        ${managerHTML()}
-        ${engineerHTML(engineerMember)}
-        ${internHTML(internMember)}
+        ${teamForce.forEach(person => {
+            if(person.role === 'Engineer'){
+                let engineer = engineerHTML(person)
+                displayPeople += engineer
+        } else if(person.role === 'Intern'){
+            let intern =   internHTML(person)
+            displayPeople += intern
+        } else{
+            let manager = managerHTML(person)
+            displayPeople += manager
+        }
+    } 
+        )
+    }   
+        
+    ${displayPeople}
+        
+        
     </main>
 
   </body>
