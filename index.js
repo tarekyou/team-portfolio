@@ -113,9 +113,7 @@ const teamInfo = (individual) => {
         }
     ])
     .then(answers => {
-        if (answers.confirmAddMember){
-            return teamInfo(individual)
-        }
+
         switch (answers.role) {
             case "Engineer":
                 const engineer = new Engineer(answers.name, answers.id, answers.email, answers.github);
@@ -125,6 +123,9 @@ const teamInfo = (individual) => {
                 const intern = new Intern(answers.name, answers.id, answers.email, answers.school);
                 teamForce.push(intern);
                 break;
+        }
+        if (answers.confirmAddMember){
+            return teamInfo(individual)
         }
 
     })
@@ -155,7 +156,7 @@ managerInfo()
 .then(()=> generatePage(teamForce))
 
 .then(pageHTML => {
-    console.log(pageHTML)
+    console.log(teamForce)
     return writeFile(pageHTML);
   })
 .catch(err => {

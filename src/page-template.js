@@ -74,6 +74,22 @@ const managerHTML = (person) => {
 
 
 const generateHTML= (teamForce) =>{
+
+
+    teamForce.forEach(person => {
+        if(person.getRole() === 'Engineer'){
+            let engineer = engineerHTML(person)
+            displayPeople += engineer
+    } else if(person.getRole() === 'Intern'){
+        let intern =   internHTML(person)
+        displayPeople += intern
+    } else{
+        let manager = managerHTML(person)
+        displayPeople += manager
+    }
+} 
+    )
+  
     
 
     return `
@@ -98,20 +114,7 @@ const generateHTML= (teamForce) =>{
       </div>
     </header>
     <main class="container my-5">
-        ${teamForce.forEach(person => {
-            if(person.role === 'Engineer'){
-                let engineer = engineerHTML(person)
-                displayPeople += engineer
-        } else if(person.role === 'Intern'){
-            let intern =   internHTML(person)
-            displayPeople += intern
-        } else{
-            let manager = managerHTML(person)
-            displayPeople += manager
-        }
-    } 
-        )
-    }   
+
         
     ${displayPeople}
         
