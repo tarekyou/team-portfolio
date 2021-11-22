@@ -9,8 +9,8 @@ An app to generate an HTML page with team members information based on user resp
 * TDD
 * OOP
 
-## Website
-N/A
+## Walk-through video
+https://watch.screencastify.com/v/YJXQpfKcvG55HISVeV0X
 
 ## Contribution
 Made with ❤️ by Tarek
